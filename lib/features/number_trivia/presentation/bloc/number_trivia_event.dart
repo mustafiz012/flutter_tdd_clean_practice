@@ -2,13 +2,13 @@ part of 'number_trivia_bloc.dart';
 
 @immutable
 abstract class NumberTriviaEvent extends Equatable {
-  const NumberTriviaEvent();
+  const NumberTriviaEvent([List props = const <dynamic>[]]);
 }
 
 class GetTriviaForConcreteNumber extends NumberTriviaEvent {
   final String numberString;
 
-  const GetTriviaForConcreteNumber(this.numberString);
+  const GetTriviaForConcreteNumber({required this.numberString});
 
   @override
   List<Object?> get props => [];
