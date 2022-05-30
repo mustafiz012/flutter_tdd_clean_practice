@@ -3,8 +3,9 @@ import 'package:flutter_tdd_clean_practice/features/number_trivia/presentation/p
 
 import 'injection_container.dart' as di;
 
-void main() {
-  di.init();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Number Trivia',
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: MessageDisplay(message: "Still working..."),
+      home: NumberTriviaPage(),
     );
   }
 }
