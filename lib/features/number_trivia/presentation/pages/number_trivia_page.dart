@@ -4,7 +4,6 @@ import 'package:flutter_tdd_clean_practice/features/number_trivia/presentation/b
 import 'package:flutter_tdd_clean_practice/features/number_trivia/presentation/widgets/widgets.dart';
 
 import '../../../../injection_container.dart';
-import '../widgets/trivia_controls.dart';
 
 class NumberTriviaPage extends StatelessWidget {
   const NumberTriviaPage({Key? key}) : super(key: key);
