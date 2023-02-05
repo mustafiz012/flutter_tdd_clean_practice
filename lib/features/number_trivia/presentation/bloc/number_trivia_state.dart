@@ -23,6 +23,15 @@ class Loaded extends NumberTriviaState {
   List<Object> get props => [];
 }
 
+class CacheLoaded extends NumberTriviaState {
+  final NumberTrivia trivia;
+
+  CacheLoaded({required this.trivia}) : super([trivia]);
+
+  @override
+  List<Object> get props => [];
+}
+
 class Error extends NumberTriviaState {
   final String message;
 

@@ -28,23 +28,41 @@ class NumberTriviaPage extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 10),
               BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
-                  builder: (context, state) {
-                if (state is Empty) {
-                  return MessageDisplay(
-                    message: "Still searching...",
-                  );
-                } else if (state is Loading) {
-                  return LoadingWidget();
-                } else if (state is Loaded) {
-                  return TriviaDisplay(numberTrivia: state.trivia);
-                } else if (state is Error) {
-                  return MessageDisplay(message: state.message);
-                } else {
-                  return MessageDisplay(
-                    message: "Still searching...",
-                  );
-                }
-              }),
+                builder: (context, state) {
+                  if (state is Loaded || state is Error || state is Empty) {
+                    return Container();
+                  }
+                  /*else if (state is CacheLoaded) {
+                    return const LinearProgressIndicator();
+                  } */
+                  else {
+                    return const LinearProgressIndicator();
+                  }
+                },
+              ),
+              BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
+                builder: (context, state) {
+                  if (state is Empty) {
+                    return MessageDisplay(
+                      message: "Still searching...",
+                    );
+                  } else if (state is Loading) {
+                    return LoadingWidget();
+                  } else if (state is Loaded) {
+                    print("Loaded ${state.trivia.number}");
+                    return TriviaDisplay(numberTrivia: state.trivia);
+                  } else if (state is CacheLoaded) {
+                    print("CacheLoaded ${state.trivia.number}");
+                    return TriviaDisplay(numberTrivia: state.trivia);
+                  } else if (state is Error) {
+                    return MessageDisplay(message: state.message);
+                  } else {
+                    return MessageDisplay(
+                      message: "Still searching...",
+                    );
+                  }
+                },
+              ),
               SizedBox(height: 20),
               // Bottom half
               TriviaControls()

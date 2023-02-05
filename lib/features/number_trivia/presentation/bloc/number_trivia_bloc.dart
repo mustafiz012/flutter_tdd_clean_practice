@@ -12,7 +12,6 @@ import 'package:flutter_tdd_clean_practice/features/number_trivia/domain/usecase
 import '../../../../core/error/failures.dart';
 
 part 'number_trivia_event.dart';
-
 part 'number_trivia_state.dart';
 
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
@@ -34,6 +33,9 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
         (failure) async => emit(Error(message: cInvalidInputFailureMessage)),
         (integer) async {
           emit(Loading());
+          emit(CacheLoaded(
+              trivia: const NumberTrivia("Cached trivia for 11", 11)));
+          await Future.delayed(const Duration(seconds: 2));
           final failureOrTrivia =
               await getConcreteNumberTrivia(Params(number: integer));
           _eitherLoadedOrFailure(failureOrTrivia, emit);
